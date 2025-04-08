@@ -163,7 +163,7 @@ class NTPatcherApp:
             response = messagebox.askyesno("Backup Confirmation", f"Do you wish to back up NeotokyoSource? This can protect your base game data...")
 
             if response:
-                messagebox.showinfo("Creating Backup", f"A backup of your NeotokyoSource will taking place, this may freeze for a substantial time, please wait for it to finish...\n\nClick to continue...")
+                messagebox.showinfo("Creating Backup", f"A backup of your NeotokyoSource will take place, this may freeze for a substantial time, please wait for it to finish...\n\nClick to continue...")
                 # Create a zip file, excluding the existing backup zip file from being added to it
                 with zipfile.ZipFile(backup_zip_path, 'w', zipfile.ZIP_DEFLATED) as backup_zip:
                     for foldername, subfolders, filenames in os.walk(self.game_path):
@@ -225,7 +225,8 @@ class NTPatcherApp:
                 messagebox.showerror("Error", f"Failed to copy client.dll: {e}")
                 return
         else:
-            print("client.dll already exists, skipping copy.")
+            shutil.copy(client_dll_path, target_dll_path)
+            print(f"client.dll successfully copied to {target_dll_path}.")
 
         # Determine which script to run
         script_name = "iconfix.bat" if os.name == "nt" else "iconfix.sh"
