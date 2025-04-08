@@ -9,7 +9,7 @@ import datetime
 import subprocess
 import sys
 
-class FEARManagerApp:
+class NTPatcherApp:
     def __init__(self, root):
         self.root = root
         self.root.title("NEOTOKYO° patcher")
@@ -313,5 +313,5 @@ class FEARManagerApp:
 
 if __name__ == "__main__":
     root = tk.Tk()
-    app = FEARManagerApp(root)
+    app = NTPatcherApp(root)
     root.mainloop()
