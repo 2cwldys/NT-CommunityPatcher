@@ -160,18 +160,22 @@ class FEARManagerApp:
             backup_zip_name = f"NTSource_backup_{timestamp}.zip"
             backup_zip_path = os.path.join(self.game_path, backup_zip_name)
 
-            # Create a zip file, excluding the existing backup zip file from being added to it
-            with zipfile.ZipFile(backup_zip_path, 'w', zipfile.ZIP_DEFLATED) as backup_zip:
-                for foldername, subfolders, filenames in os.walk(self.game_path):
-                    # Exclude the backup zip file from being added to itself
-                    if backup_zip_name not in filenames:
-                        for filename in filenames:
-                            file_path = os.path.join(foldername, filename)
-                            # Add file to zip, maintaining directory structure
-                            backup_zip.write(file_path, os.path.relpath(file_path, self.game_path))
+            response = messagebox.askyesno("Backup Confirmation", f"Do you wish to back up NeotokyoSource? This can protect your base game data...")
 
-            print(f"Backup created: {backup_zip_path}")
-            messagebox.showinfo("Backup Created", f"To protect your base game assets, {backup_zip_name} has been created in {self.game_path}...")
+            if response:
+                messagebox.showinfo("Creating Backup", f"A backup of your NeotokyoSource will taking place, this may freeze for a substantial time, please wait for it to finish...\n\nClick to continue...")
+                # Create a zip file, excluding the existing backup zip file from being added to it
+                with zipfile.ZipFile(backup_zip_path, 'w', zipfile.ZIP_DEFLATED) as backup_zip:
+                    for foldername, subfolders, filenames in os.walk(self.game_path):
+                        # Exclude the backup zip file from being added to itself
+                        if backup_zip_name not in filenames:
+                            for filename in filenames:
+                                file_path = os.path.join(foldername, filename)
+                                # Add file to zip, maintaining directory structure
+                                backup_zip.write(file_path, os.path.relpath(file_path, self.game_path))
+
+                print(f"Backup created: {backup_zip_path}")
+                messagebox.showinfo("Backup Created", f"To protect your base game assets, {backup_zip_name} has been created in {self.game_path}...")
 
         except Exception as e:
             messagebox.showerror("Error", f"Failed to create a backup: {e}")
@@ -257,12 +261,32 @@ class FEARManagerApp:
                 readme_file.write("7. Applies custom grenade skins to differentiate them easier.\n")
                 readme_file.write("=" * 40 + "\n")
                 readme_file.write("FROM: https://bonahnsa.com/mods.html\n")
+                readme_file.write("\n")
+                readme_file.write("You may run [Restore Backup] after specifying NEOTOKYO game path to restore original files.")
             print(f"Readme file created at: {readme_file_path}")
         except Exception as e:
             messagebox.showerror("Error", f"Failed to create readme_patcher.txt: {e}")
             return
 
-        messagebox.showinfo("Installation Completed", f"Installation completed successfully.\nReadme of patched changes are in {self.game_path}.")
+        readme = messagebox.askyesno("Installation Completed", f"Installation completed successfully.\nReadme of patched changes are in {self.game_path}.\nDo you wish to open them?")
+        if readme:
+            readme_file_path = os.path.join(self.game_path, "readme_patcher.txt")
+            
+            if os.path.exists(readme_file_path):
+                try:
+                    # Determine the operating system
+                    if os.name == "nt":  # Windows
+                        subprocess.Popen(["notepad.exe", readme_file_path])
+                        print(f"Opening {readme_file_path} in Notepad...")
+                    else:  # Unix-based systems (Linux, macOS, etc.)
+                        subprocess.Popen(["vim", readme_file_path])
+                        print(f"Opening {readme_file_path} in Vim...")
+                except Exception as e:
+                    messagebox.showerror("Error", f"Failed to open the readme file: {e}")
+            else:
+                messagebox.showerror("Error", f"The readme file does not exist at {readme_file_path}")
+        else:
+            pass;
 
     def run_neotokyo(self):
         if not self.game_path:
