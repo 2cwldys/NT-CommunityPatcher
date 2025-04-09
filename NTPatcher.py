@@ -188,6 +188,7 @@ class NTPatcherApp:
             self.resource_path("VCROSD_FontMod.zip"),
             self.resource_path("Silenced_MILSO.zip"),
             self.resource_path("RedFragBlueSmoke.zip"),
+            self.resource_path("CONFIGS.zip"),
             self.resource_path("ZR2013.zip")
         ]
 
@@ -260,6 +261,7 @@ class NTPatcherApp:
                 readme_file.write("5. Applies custom sound overrides for all various weapons.\n")
                 readme_file.write("6. Applies custom VCR OSD MONO font replacements.\n")
                 readme_file.write("7. Applies custom grenade skins to differentiate them easier.\n")
+                readme_file.write("8. Adjusts client default config with accurate rates for smoothest play.\n")
                 readme_file.write("=" * 40 + "\n")
                 readme_file.write("FROM: https://bonahnsa.com/mods.html\n")
                 readme_file.write("\n")
