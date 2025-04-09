@@ -9,6 +9,12 @@ import datetime
 import subprocess
 import sys
 
+# PyInstaller resource path
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
 class NTPatcherApp:
     def __init__(self, root):
         self.root = root
@@ -137,11 +143,6 @@ class NTPatcherApp:
             messagebox.showerror("Error", f"Failed to restore backup: {e}")
 
     def install_files(self):
-        # PyInstaller resource path
-        def resource_path(relative_path):
-            if hasattr(sys, '_MEIPASS'):
-                return os.path.join(sys._MEIPASS, relative_path)
-            return os.path.join(os.path.abspath("."), relative_path)
 
         # Ensure game_path is set
         if not self.game_path:
@@ -193,6 +194,12 @@ class NTPatcherApp:
             self.resource_path("ZR68_Sounds.zip"),
             self.resource_path("ZR2013.zip")
         ]
+
+        response_streamsafe = messagebox.askyesno("Add STREAMSAFE", "Do you wish to extract streamer-safe overwrites for SFW materials and textures?")
+
+        if response_streamsafe:
+            zip_files.append(self.resource_path("STREAMSAFE.zip"))
+            print("STREAMSAFE.zip has been added to the list.")
 
         # Path to client.dll in resources
         client_dll_path = resource_path("client.dll")
@@ -265,7 +272,9 @@ class NTPatcherApp:
                 readme_file.write("7. Applies custom grenade skins to differentiate them easier.\n")
                 readme_file.write("8. Adjusts client default config with accurate rates for smoothest play.\n")
                 readme_file.write("9. Applies custom footstep sounds for the player.\n")
-                readme_file.write("10. Applies new & unique ZR68 weapon sounds.")
+                readme_file.write("10. Applies new & unique ZR68 weapon sounds.\n")
+                readme_file.write("\n")
+                readme_file.write("(OPTIONAL:) If selected, streamsafe materials & textures for SFW twitch streaming.\n")
                 readme_file.write("=" * 40 + "\n")
                 readme_file.write("FROM: https://bonahnsa.com/mods.html\n")
                 readme_file.write("\n")
