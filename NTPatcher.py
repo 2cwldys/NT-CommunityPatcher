@@ -273,6 +273,7 @@ class NTPatcherApp:
                 readme_file.write("8. Adjusts client default config with accurate rates for smoothest play.\n")
                 readme_file.write("9. Applies custom footstep sounds for the player.\n")
                 readme_file.write("10. Applies new & unique ZR68 weapon sounds.\n")
+                readme_file.write("11. Applies toggled crouch & lean alias binds.\n")
                 readme_file.write("\n")
                 readme_file.write("(OPTIONAL:) If selected, streamsafe materials & textures for SFW twitch streaming.\n")
                 readme_file.write("=" * 40 + "\n")
