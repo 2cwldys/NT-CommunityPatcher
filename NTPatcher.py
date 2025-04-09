@@ -189,6 +189,8 @@ class NTPatcherApp:
             self.resource_path("Silenced_MILSO.zip"),
             self.resource_path("RedFragBlueSmoke.zip"),
             self.resource_path("CONFIGS.zip"),
+            self.resource_path("FOOTSTEPS.zip"),
+            self.resource_path("ZR68_Sounds.zip"),
             self.resource_path("ZR2013.zip")
         ]
 
@@ -256,12 +258,14 @@ class NTPatcherApp:
                 readme_file.write("=" * 40 + "\n")
                 readme_file.write("1. Extracted and applied the NT-IconFix patch.\n")
                 readme_file.write("2. Overwritten existing client.dll for FOV patch in NeotokyoSource/bin.\n")
-                readme_file.write("3. Applies OLD 2013 ZR86C, ZR68S, ZR68L weapon models.\n")
+                readme_file.write("3. Applies OLD 2013 ZR68C, ZR68S, ZR68L weapon models.\n")
                 readme_file.write("4. Applies custom silenced recon MILSO model.\n")
                 readme_file.write("5. Applies custom sound overrides for all various weapons.\n")
                 readme_file.write("6. Applies custom VCR OSD MONO font replacements.\n")
                 readme_file.write("7. Applies custom grenade skins to differentiate them easier.\n")
                 readme_file.write("8. Adjusts client default config with accurate rates for smoothest play.\n")
+                readme_file.write("9. Applies custom footstep sounds for the player.\n")
+                readme_file.write("10. Applies new & unique ZR68 weapon sounds.")
                 readme_file.write("=" * 40 + "\n")
                 readme_file.write("FROM: https://bonahnsa.com/mods.html\n")
                 readme_file.write("\n")

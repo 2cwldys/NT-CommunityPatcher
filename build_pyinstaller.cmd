@@ -1,3 +1,3 @@
-pyinstaller --noconsole --onefile --add-data "NT-IconFix.zip;." --add-data "CONFIGS.zip;." --add-data "Silenced_MILSO.zip;." --add-data "TedCustomSounds.zip;." --add-data "RedFragBlueSmoke.zip;." --add-data "VCROSD_FontMod.zip;." --add-data "ZR2013.zip;." --add-data "background.jpg;." --add-data "app_icon.ico;." --add-data "button.mp3;." --add-data "music.mp3;." --add-data "client.dll;." NTPatcher.py
+pyinstaller --noconsole --onefile --add-data "NT-IconFix.zip;." --add-data "CONFIGS.zip;." --add-data "Silenced_MILSO.zip;." --add-data "FOOTSTEPS.zip;." --add-data "ZR68_Sounds.zip;." --add-data "TedCustomSounds.zip;." --add-data "RedFragBlueSmoke.zip;." --add-data "VCROSD_FontMod.zip;." --add-data "ZR2013.zip;." --add-data "background.jpg;." --add-data "app_icon.ico;." --add-data "button.mp3;." --add-data "music.mp3;." --add-data "client.dll;." NTPatcher.py
 echo Press enter to exit
 set /p input=
